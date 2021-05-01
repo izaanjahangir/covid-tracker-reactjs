@@ -1,7 +1,9 @@
+import Home from "./screens/Home";
+
 function App() {
   return (
-    <div>
-      <h1>App</h1>
+    <div className="h-full">
+      <Home />
     </div>
   );
 }

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.stats-overview-container {
+  @apply h-20;
+  @apply bg-white;
+  @apply shadow-lg;
+  @apply mx-4;
+  @apply sm:mx-0;
+
+  margin-top: 2.5rem;
+}
