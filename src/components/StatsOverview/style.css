@@ -3,11 +3,15 @@
 @tailwind utilities;
 
 .stats-overview-container {
-  @apply h-20;
+  @apply h-16;
   @apply bg-white;
   @apply shadow-lg;
   @apply mx-4;
   @apply sm:mx-0;
+  @apply flex;
+  @apply px-2;
+  @apply rounded-lg;
 
-  margin-top: 2.5rem;
+
+  margin-top: 2rem;
 }

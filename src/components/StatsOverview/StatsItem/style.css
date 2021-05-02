@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.stats-item-text-label {
+    @apply text-blue-500;
+    font-size: 0.6rem;
+}
+
+.stats-item-text-value {
+    @apply text-sm;
+    @apply text-blue-800;
+}
