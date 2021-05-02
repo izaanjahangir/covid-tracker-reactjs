@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.line-graph-main-container {
+  @apply rounded-md;
+  @apply bg-white;
+  @apply p-2;
+  @apply shadow-lg;
+  @apply border;
+  @apply w-full;
+  @apply mr-2;
+  
+  height: 32rem;
+}
+
+.select-location-main-container {
+  @apply rounded-md;
+  @apply bg-white;
+  @apply p-2;
+  @apply shadow-lg;
+  @apply border;
+  @apply w-96;
+
+  height: 32rem;
+}
