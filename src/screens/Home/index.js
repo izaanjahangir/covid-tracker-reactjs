@@ -9,7 +9,7 @@ function Home() {
         <div className="mx-auto max-w-5xl">
           <StatsOverview />
           <div className="mt-2 flex">
-            <div className="flex-1 bg-white p-2 shadow-2xl border border-grey">
+            <div className="mx-4 sm:mx-0 rounded-md flex-1 bg-white p-2 shadow-2xl border border-gray-300">
               <LineGraph />
             </div>
           </div>
