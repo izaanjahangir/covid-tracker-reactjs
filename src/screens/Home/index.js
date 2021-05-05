@@ -16,7 +16,7 @@ function Home() {
             </div>
             <div className="select-location-main-container mt-2 md:mt-0">
               <CountryItem className="mt-0" />
-              <CountryItem />
+              <CountryItem active={true} />
               <CountryItem />
               <CountryItem />
               <CountryItem />
