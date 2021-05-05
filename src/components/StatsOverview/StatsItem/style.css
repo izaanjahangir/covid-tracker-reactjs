@@ -4,10 +4,10 @@
 
 .stats-item-text-label {
     @apply text-blue-500;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
 }
 
 .stats-item-text-value {
-    @apply text-sm;
+    @apply text-base;
     @apply text-blue-800;
 }
