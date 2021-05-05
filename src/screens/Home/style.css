@@ -20,7 +20,9 @@
   @apply p-2;
   @apply shadow-lg;
   @apply border;
-  @apply w-96;
+  @apply w-full;
+  @apply md:w-96;
 
   height: 32rem;
+  overflow-y: auto;
 }
