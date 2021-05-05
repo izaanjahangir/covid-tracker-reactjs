@@ -79,7 +79,7 @@ const GRAPH_OPTIONS = {
   series: [
     {
       name: "series-1",
-      data: new Array(35).fill(0).map((_) => randonNumber(-100, 100)),
+      data: [],
     },
   ],
 };

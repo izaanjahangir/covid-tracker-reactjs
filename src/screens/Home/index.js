@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import api from "../../utils/api";
+import Loading from "../../components/Loading";
 import StatsOverview from "../../components/StatsOverview";
 import Background from "../../components/Background";
 import LineGraph from "../../components/LineGraph";
@@ -21,13 +22,15 @@ function Home() {
 
   const fetchGlobal = async () => {
     try {
+      setLoading(true);
       const response = await api.getGlobal();
 
-      console.log("response =>", response);
       setGlobalData(response.result);
     } catch (e) {
       alert(e.message);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -74,6 +77,7 @@ function Home() {
           </div>
         </div>
       </div>
+      {loading && <Loading />}
     </Background>
   );
 }
