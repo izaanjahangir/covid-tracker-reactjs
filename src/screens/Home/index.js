@@ -126,7 +126,7 @@ function Home() {
       let data = response.result.reduce((acc, item) => {
         const name = Object.keys(item)[0];
         const foundCountry = constants.SUPPORTED_COUNTRIES.find(
-          (item) => item.code == name
+          (item) => item.code === name
         );
 
         if (foundCountry) {

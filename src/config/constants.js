@@ -13,7 +13,7 @@ import turkeyFlag from "../assets/icons/flags/turkey.svg";
 import mexicoFlag from "../assets/icons/flags/mexico.svg";
 import greeceFlag from "../assets/icons/flags/greece.svg";
 
-export default {
+const constants = {
   SUPPORTED_COUNTRIES: [
     {
       name: "Pakistan",
@@ -87,3 +87,5 @@ export default {
     },
   ],
 };
+
+export default constants;
