@@ -10,7 +10,7 @@ import "./style.css";
 
 function StatsOverview(props) {
   return (
-    <div className="stats-overview-container">
+    <div className="stats-overview-container flex-col sm:flex-row">
       {props.loading ? (
         <Loading textStyle={{ fontSize: "1rem" }} />
       ) : (

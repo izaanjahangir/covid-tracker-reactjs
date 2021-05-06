@@ -15,10 +15,10 @@ const GRAPH_OPTIONS = {
       type: "gradient",
     },
     markers: {
-      size: 4,
+      size: 1,
       colors: ["#ffffff"],
       strokeColor: "#00b894",
-      strokeWidth: 2,
+      strokeWidth: 1,
     },
     tooltip: {
       theme: "dark",
@@ -28,7 +28,7 @@ const GRAPH_OPTIONS = {
     },
     plotOptions: {
       area: {
-        fillTo: "end",
+        fillTo: "origin",
       },
     },
     chart: {
@@ -51,6 +51,7 @@ function LineGraph(props) {
         ...GRAPH_OPTIONS.options,
         xaxis: {
           categories: props.data.data.dates,
+          tickAmount: 18
         },
       };
       const series = [
