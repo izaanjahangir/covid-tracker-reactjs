@@ -21,4 +21,13 @@ api.getCurrentCountForCountries = () => {
   return globalHelpers.fetchApi(url, options);
 };
 
+api.getHistoricalDataForCountry = (params) => {
+  const options = {
+    method: "GET",
+  };
+  const url = BASE_URL + "/country/" + params.countryCode;
+
+  return globalHelpers.fetchApi(url, options);
+};
+
 export default api;

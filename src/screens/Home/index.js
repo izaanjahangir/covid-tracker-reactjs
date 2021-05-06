@@ -22,6 +22,14 @@ const initialState = {
     loading: false,
     data: [],
   },
+  historicalCountry: {
+    data: {
+      dates: [],
+      cases: [],
+    },
+    countryCode: null,
+    loading: false,
+  },
 };
 
 const reducer = (state, action) => {
@@ -48,6 +56,21 @@ const reducer = (state, action) => {
         ...state,
         countries: { ...state.countries, ...action.payload },
       };
+
+    case "SET_COUNTRIES_HISTORICAL_LOADING":
+      return {
+        ...state,
+        historicalCountry: {
+          ...state.historicalCountry,
+          loading: action.payload,
+        },
+      };
+
+    case "SET_COUNTRIES_HISTORICAL_DATA":
+      return {
+        ...state,
+        historicalCountry: { ...state.historicalCountry, ...action.payload },
+      };
     default:
       throw new Error();
   }
@@ -72,6 +95,27 @@ function Home() {
     }
 
     dispatch({ type: "SET_GLOBAL_DATA_LOADING", payload: false });
+  };
+
+  const fetchCountryHistoricalData = async (countryCode) => {
+    try {
+      dispatch({ type: "SET_COUNTRIES_HISTORICAL_LOADING", payload: true });
+      const response = await api.getHistoricalDataForCountry({
+        countryCode,
+      });
+
+      const dates = Object.keys(response.result);
+      const data = dates.map((item, index) => response.result[item].confirmed);
+
+      dispatch({
+        type: "SET_COUNTRIES_HISTORICAL_DATA",
+        payload: { data: { dates, cases: data }, countryCode },
+      });
+    } catch (e) {
+      alert(e.message);
+    }
+
+    dispatch({ type: "SET_COUNTRIES_HISTORICAL_LOADING", payload: false });
   };
 
   const fetchAllCountriesCount = async () => {
@@ -115,6 +159,10 @@ function Home() {
     return "";
   };
 
+  const handleCountryChange = (data) => {
+    fetchCountryHistoricalData(data.code);
+  };
+
   return (
     <Background>
       <div id="main-container" className="mx-auto container h-full">
@@ -125,11 +173,13 @@ function Home() {
           />
           <div className="mt-2 flex flex-col mx-4 sm:mx-0 md:flex-row">
             <div className="line-graph-main-container mr-2">
-              <LineGraph />
+              <LineGraph data={state.historicalCountry} />
             </div>
             <div className="select-location-main-container mt-2 md:mt-0">
               {state.countries.data.map((item, i) => (
                 <CountryItem
+                  active={item.code === state.historicalCountry.countryCode}
+                  onClick={handleCountryChange}
                   key={item.code}
                   data={item}
                   className={getCountryItemClasses(

@@ -17,7 +17,8 @@
 .select-location-main-container {
   @apply rounded-md;
   @apply bg-white;
-  @apply p-2;
+  @apply p-4;
+  @apply px-4;
   @apply shadow-lg;
   @apply border;
   @apply w-full;
@@ -25,4 +26,5 @@
 
   height: 32rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }

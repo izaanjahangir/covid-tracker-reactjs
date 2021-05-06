@@ -4,7 +4,7 @@ import "./style.css";
 function CountryItem(props) {
   const getContainerClasses = () => {
     let BASE_CLASSES =
-      "my-3 cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg w-full py-2 px-2 flex items-center";
+      "hover:text-white transition duration-500 ease-in-out transform hover:scale-110 my-3 cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg w-full py-2 px-2 flex items-center hover:bg-green-400";
 
     if (props.className) {
       BASE_CLASSES += " " + props.className;
@@ -17,8 +17,14 @@ function CountryItem(props) {
     return BASE_CLASSES;
   };
 
+  const handleClick = () => {
+    if (props.onClick) {
+      props.onClick(props.data);
+    }
+  };
+
   return (
-    <div className={getContainerClasses()}>
+    <div onClick={handleClick} className={getContainerClasses()}>
       <div className="flex flex-1">
         <img
           className="shadow-lg country-item-icon"

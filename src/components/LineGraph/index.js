@@ -2,10 +2,6 @@ import Chart from "react-apexcharts";
 
 import Loading from "../Loading";
 
-function randonNumber(maximum, minimum) {
-  return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
-}
-
 const GRAPH_OPTIONS = {
   options: {
     colors: ["#00b894"],
@@ -39,69 +35,53 @@ const GRAPH_OPTIONS = {
       id: "basic-bar",
     },
     xaxis: {
-      categories: [
-        "01-jan-2020",
-        "02-jan-2020",
-        "03-jan-2020",
-        "17-mar-2020",
-        "18-mar-2020",
-        "19-mar-2020",
-        "20-mar-2020",
-        "01-jan-2020",
-        "02-jan-2020",
-        "03-jan-2020",
-        "17-mar-2020",
-        "18-mar-2020",
-        "19-mar-2020",
-        "20-mar-2020",
-        "01-jan-2020",
-        "02-jan-2020",
-        "03-jan-2020",
-        "17-mar-2020",
-        "18-mar-2020",
-        "19-mar-2020",
-        "20-mar-2020",
-        "01-jan-2020",
-        "02-jan-2020",
-        "03-jan-2020",
-        "17-mar-2020",
-        "18-mar-2020",
-        "19-mar-2020",
-        "20-mar-2020",
-        "01-jan-2020",
-        "02-jan-2020",
-        "03-jan-2020",
-        "17-mar-2020",
-        "18-mar-2020",
-        "19-mar-2020",
-        "20-mar-2020",
-      ],
+      categories: [],
     },
   },
-  series: [
-    {
-      name: "series-1",
-      data: new Array(35).fill(0).map((_) => randonNumber(-100, 100)),
-    },
-  ],
 };
 
 function LineGraph(props) {
-  return (
-    <div>
-      {props.loading ? (
-        <Loading style={{ height: "480px" }}>Loading graph...</Loading>
-      ) : (
+  const render = () => {
+    if (props.data.loading) {
+      return <Loading style={{ height: "480px" }}>Loading graph...</Loading>;
+    }
+
+    if (props.data.countryCode) {
+      const options = {
+        ...GRAPH_OPTIONS.options,
+        xaxis: {
+          categories: props.data.data.dates,
+        },
+      };
+      const series = [
+        {
+          name: "COVID cases",
+          data: props.data.data.cases,
+        },
+      ];
+
+      return (
         <Chart
-          options={GRAPH_OPTIONS.options}
-          series={GRAPH_OPTIONS.series}
+          options={options}
+          series={series}
           type="area"
           width="100%"
           height="480px"
         />
-      )}
-    </div>
-  );
+      );
+    } else {
+      return (
+        <div
+          style={{ height: "480px" }}
+          className="flex justify-center items-center"
+        >
+          <p className="text-sm">Please select a country to see its data</p>
+        </div>
+      );
+    }
+  };
+
+  return <div>{render()}</div>;
 }
 
 LineGraph.defaultProps = {
