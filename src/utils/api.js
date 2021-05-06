@@ -12,4 +12,13 @@ api.getGlobal = () => {
   return globalHelpers.fetchApi(url, options);
 };
 
+api.getCurrentCountForCountries = () => {
+  const options = {
+    method: "GET",
+  };
+  const url = BASE_URL + "/global/latest";
+
+  return globalHelpers.fetchApi(url, options);
+};
+
 export default api;

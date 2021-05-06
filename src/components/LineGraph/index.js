@@ -1,5 +1,7 @@
 import Chart from "react-apexcharts";
 
+import Loading from "../Loading";
+
 function randonNumber(maximum, minimum) {
   return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
 }
@@ -79,23 +81,31 @@ const GRAPH_OPTIONS = {
   series: [
     {
       name: "series-1",
-      data: [],
+      data: new Array(35).fill(0).map((_) => randonNumber(-100, 100)),
     },
   ],
 };
 
-function LineGraph() {
+function LineGraph(props) {
   return (
     <div>
-      <Chart
-        options={GRAPH_OPTIONS.options}
-        series={GRAPH_OPTIONS.series}
-        type="area"
-        width="100%"
-        height="480px"
-      />
+      {props.loading ? (
+        <Loading style={{ height: "480px" }}>Loading graph...</Loading>
+      ) : (
+        <Chart
+          options={GRAPH_OPTIONS.options}
+          series={GRAPH_OPTIONS.series}
+          type="area"
+          width="100%"
+          height="480px"
+        />
+      )}
     </div>
   );
 }
+
+LineGraph.defaultProps = {
+  loading: false,
+};
 
 export default LineGraph;

@@ -1,4 +1,4 @@
-import pakistanFlag from "../../assets/icons/pakistan.svg";
+import numeral from "numeral";
 import "./style.css";
 
 function CountryItem(props) {
@@ -19,12 +19,17 @@ function CountryItem(props) {
 
   return (
     <div className={getContainerClasses()}>
-      <img
-        className="shadow-lg country-item-icon"
-        alt="flag"
-        src={pakistanFlag}
-      />
-      <p className="ml-3 text-sm">Pakistan</p>
+      <div className="flex flex-1">
+        <img
+          className="shadow-lg country-item-icon"
+          alt="flag"
+          src={props.data.flag}
+        />
+        <p className="ml-3 text-sm">{props.data.countryName}</p>
+      </div>
+      <p className="text-sm text-purple-700">
+        {numeral(props.data.confirmed).format("0,")}
+      </p>
     </div>
   );
 }
@@ -32,6 +37,7 @@ function CountryItem(props) {
 CountryItem.defaultProps = {
   className: "",
   active: false,
+  data: {},
 };
 
 export default CountryItem;
